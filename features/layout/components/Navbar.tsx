@@ -22,6 +22,7 @@ import { selectTotalItems } from "@/store/selectors/cartSelectors";
 import { useUI } from "@/app/ui-context";
 import { useGetCategoriesQuery } from "@/store/api/productsApi";
 import { useProductFilters } from "@/features/products/hooks/useProductFilters";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const { openCart, openSidebar } = useUI();
@@ -32,6 +33,9 @@ export default function Navbar() {
 
   const { data: categories = [] } = useGetCategoriesQuery();
   const { filters, setFilter } = useProductFilters();
+
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   return (
     <AppBar position="sticky" color="default" elevation={1}>
@@ -55,13 +59,13 @@ export default function Navbar() {
         </Typography>
 
         {/* Categories */}
-        {!isMobile && (
+        {isHome && !isMobile && (
           <Select
             size="small"
             value={filters.category ?? ""}
             displayEmpty
-            onChange={(e) => setFilter("category", e.target.value ||null)}
-            sx={{ minWidth: 200 }}
+            onChange={(e) => setFilter("category", e.target.value || null)}
+            sx={{ minWidth: 250 }}
           >
             <MenuItem value="">All Categories</MenuItem>
             {categories.map((cat) => (
@@ -73,16 +77,18 @@ export default function Navbar() {
         )}
 
         {/* Search */}
-        <TextField
-          size="small"
-          placeholder="Search products…"
-          value={filters.search}
-          onChange={(e) => setFilter("search", e.target.value)}
-          sx={{
-            flexGrow: 1,
-            maxWidth: 600,
-          }}
-        />
+        {isHome && (
+          <TextField
+            size="small"
+            placeholder="Search products…"
+            value={filters.search}
+            onChange={(e) => setFilter("search", e.target.value)}
+            sx={{
+              flexGrow: 1,
+              maxWidth: 600,
+            }}
+          />
+        )}
 
         {/* Actions */}
         <Box display="flex" alignItems="center" gap={1}>
