@@ -6,7 +6,7 @@ import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: {
-    default: "Product Management Dashboard",
+    default: "DamaTag Product Management Dashboard",
     template: "%s | Product Dashboard",
   },
   description:
