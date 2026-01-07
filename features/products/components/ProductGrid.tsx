@@ -1,12 +1,17 @@
 "use client";
+
 import { Grid, Alert, Box } from "@mui/material";
 import { ProductCard } from "./ProductCard";
 import { ProductSkeleton } from "./ProductSkeleton";
-import { useGetProductsQuery } from "@/store/api/productsApi";
+import { Product } from "../types";
 
-export const ProductGrid = () => {
-  const { data, isLoading, isError } = useGetProductsQuery();
+type Props = {
+  products: Product[];
+  isLoading: boolean;
+  isError: boolean;
+};
 
+export const ProductGrid = ({ products, isLoading, isError }: Props) => {
   if (isLoading) {
     return (
       <Grid container spacing={3}>
@@ -30,13 +35,13 @@ export const ProductGrid = () => {
     return <Alert severity="error">Failed to load products</Alert>;
   }
 
-  if (!data?.length) {
+  if (!products.length) {
     return <Alert severity="info">No products found</Alert>;
   }
 
   return (
     <Grid container spacing={3}>
-      {data.map((product) => (
+      {products.map((product) => (
         <Box
           key={product.id}
           flex={{ xs: "100%", sm: "calc(50% - 12px)", md: "calc(25% - 18px)" }}

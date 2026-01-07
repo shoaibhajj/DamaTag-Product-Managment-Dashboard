@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { ThemeProvider } from "@mui/material/styles";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { Roboto } from "next/font/google";
-
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { store } from "@/store";
 import theme from "@/styles/theme";
 
@@ -20,7 +20,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     <AppRouterCacheProvider options={{ enableCssLayer: true }}>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          <div className={roboto.variable}>{children}</div>
+          <NuqsAdapter>
+            <div className={roboto.variable}>{children}</div>
+          </NuqsAdapter>
         </ThemeProvider>
       </Provider>
     </AppRouterCacheProvider>
