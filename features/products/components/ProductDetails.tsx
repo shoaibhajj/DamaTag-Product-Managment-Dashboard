@@ -19,7 +19,7 @@ export default function ProductDetails({ product }: Props) {
   };
 
   return (
-    <Paper sx={{ p: 4, maxWidth: 900, mx: "auto"}}>
+    <Paper sx={{ p: 4, maxWidth: 900, mx: "auto", mt: { xs: 0, sm: 10 } }}>
       <Box
         display="grid"
         gridTemplateColumns={{ xs: "1fr", md: "1fr 1fr" }}

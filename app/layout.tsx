@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "./providers";
+import Navbar from "@/features/layout/components/Navbar";
+import CartDrawer from "@/features/cart/components/CartDrawer";
 
 
 
@@ -24,7 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Navbar />
+          <CartDrawer />
+          {children}
+        </Providers>
       </body>
     </html>
   );

@@ -7,7 +7,7 @@ import { Roboto } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { store } from "@/store";
 import theme from "@/styles/theme";
-import UIProvider from "./ui-provider";
+import { UIProvider } from "./ui-context";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],

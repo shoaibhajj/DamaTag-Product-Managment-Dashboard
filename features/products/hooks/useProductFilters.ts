@@ -11,6 +11,7 @@ export function useProductFilters() {
     minPrice: parseAsInteger.withDefault(0),
     maxPrice: parseAsInteger.withDefault(1000),
     rating: parseAsInteger.withDefault(0),
+    sort: parseAsString.withDefault(""),
   });
 
   const setFilter = <K extends keyof ProductFilters>(

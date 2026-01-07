@@ -11,12 +11,11 @@ export interface Product {
   };
 }
 
-
-
 export type ProductFilters = {
   search: string;
   category: string | null;
   minPrice: number;
   maxPrice: number;
   rating: number;
+  sort?: string;
 };

@@ -9,6 +9,7 @@ import {
   Divider,
   TextField,
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
@@ -20,23 +21,20 @@ import {
   selectCartItems,
   selectTotalPrice,
 } from "@/store/selectors/cartSelectors";
-import CloseIcon from "@mui/icons-material/Close";
-type Props = {
-  open: boolean;
-  onClose: () => void;
-};
+import { useUI } from "@/app/ui-context";
 
-export default function CartDrawer({ open, onClose }: Props) {
+export default function CartDrawer() {
   const dispatch = useAppDispatch();
   const items = useAppSelector(selectCartItems);
   const totalPrice = useAppSelector(selectTotalPrice);
+  const { cartOpen, closeCart } = useUI();
 
   return (
-    <Drawer anchor="right" open={open} onClose={onClose}>
+    <Drawer anchor="right" open={cartOpen} onClose={closeCart}>
       <Box width={360} p={3}>
         <Box display="flex" justifyContent="space-between" mb={2}>
           <Typography variant="h6">Your Cart</Typography>
-          <IconButton onClick={onClose}>
+          <IconButton onClick={closeCart}>
             <CloseIcon />
           </IconButton>
         </Box>

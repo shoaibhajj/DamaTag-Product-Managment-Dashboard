@@ -14,9 +14,11 @@ export default function UIProvider({
 
   return (
     <>
-      <Navbar onCartClick={() => setCartOpen(true)} />
+      <Navbar onCartClick={() => setCartOpen(true)} onMenuClick={() => {
+          /* handled per page */
+        }} />
       {children}
-      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
+      <CartDrawer/>
     </>
   );
 }

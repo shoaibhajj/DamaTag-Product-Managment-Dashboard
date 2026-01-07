@@ -4,7 +4,8 @@ export function applyProductFilters(
   products: Product[],
   filters: ProductFilters
 ) {
-  return products.filter((product) => {
+
+  let filtered = products.filter((product) => {
     const matchesSearch =
       product.title.toLowerCase().includes(filters.search.toLowerCase()) ||
       product.description.toLowerCase().includes(filters.search.toLowerCase());
@@ -19,4 +20,19 @@ export function applyProductFilters(
 
     return matchesSearch && matchesCategory && matchesPrice && matchesRating;
   });
+
+
+  if (filters.sort === "price-asc") {
+    filtered = [...filtered].sort((a, b) => a.price - b.price);
+  }
+
+  if (filters.sort === "price-desc") {
+    filtered = [...filtered].sort((a, b) => b.price - a.price);
+  }
+
+  if (filters.sort === "rating-desc") {
+    filtered = [...filtered].sort((a, b) => b.rating.rate - a.rating.rate);
+  }
+
+  return filtered;
 }
