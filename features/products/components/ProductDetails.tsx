@@ -4,7 +4,7 @@ import { Box, Typography, Button, Rating, Paper } from "@mui/material";
 import Image from "next/image";
 import { Product } from "../types";
 import { useAppDispatch } from "@/store/hooks";
-// import { addToCart } from "@/store/slices/cartSlice";
+import { addToCart } from "@/store/slices/cartSlice";
 
 type Props = {
   product: Product;
@@ -12,10 +12,11 @@ type Props = {
 
 export default function ProductDetails({ product }: Props) {
   const dispatch = useAppDispatch();
+  
 
-//   const handleAddToCart = () => {
-//     dispatch(addToCart(product));
-//   };
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
 
   return (
     <Paper sx={{ p: 4, maxWidth: 900, mx: "auto"}}>
@@ -54,7 +55,7 @@ export default function ProductDetails({ product }: Props) {
             variant="contained"
             size="large"
             sx={{ mt: 3 }}
-            // onClick={handleAddToCart}
+            onClick={handleAddToCart}
           >
             Add to Cart
           </Button>

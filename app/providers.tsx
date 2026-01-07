@@ -7,6 +7,7 @@ import { Roboto } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { store } from "@/store";
 import theme from "@/styles/theme";
+import UIProvider from "./ui-provider";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -21,7 +22,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <NuqsAdapter>
-            <div className={roboto.variable}>{children}</div>
+            <UIProvider>
+              <div className={roboto.variable}>{children}</div>
+            </UIProvider>
           </NuqsAdapter>
         </ThemeProvider>
       </Provider>

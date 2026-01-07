@@ -9,8 +9,10 @@ import {
   Rating,
   Typography,
   Paper,
+  Button,
 } from "@mui/material";
 import { useProductFilters } from "../hooks/useProductFilters";
+import { useState } from "react";
 
 type Props = {
   categories: string[];
@@ -18,7 +20,7 @@ type Props = {
 
 export default function ProductFilters({ categories }: Props) {
   const { filters, setFilter, setSearchDebounced } = useProductFilters();
-
+const [open, setOpen] = useState(false);
   return (
     <Paper
       elevation={1}
@@ -88,6 +90,7 @@ export default function ProductFilters({ categories }: Props) {
             onChange={(_, value) => setFilter("rating", value ?? 0)}
           />
         </Box>
+     
       </Box>
     </Paper>
   );
