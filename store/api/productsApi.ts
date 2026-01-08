@@ -8,8 +8,8 @@ export const productsApi = createApi({
   }),
   tagTypes: ["Products"],
   endpoints: (builder) => ({
-    getProducts: builder.query<Product[], void>({
-      query: () => "/products",
+    getProducts: builder.query<Product[], number>({
+      query: (page_size) => "/products?limit=" + page_size,
       providesTags: ["Products"],
     }),
 

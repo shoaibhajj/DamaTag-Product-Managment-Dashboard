@@ -4,13 +4,12 @@ import Providers from "./providers";
 import Navbar from "@/features/layout/components/Navbar";
 import CartDrawer from "@/features/cart/components/CartDrawer";
 
-
-
 export const metadata: Metadata = {
   title: {
     default: "DamaTag Product Management Dashboard",
     template: "%s | Product Dashboard",
   },
+
   description:
     "A product management dashboard for browsing, filtering, and managing e-commerce products built with Next.js, Redux Toolkit, and Material UI.",
   applicationName: "Product Dashboard",

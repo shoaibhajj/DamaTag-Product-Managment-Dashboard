@@ -23,6 +23,7 @@ import { useUI } from "@/app/ui-context";
 import { useGetCategoriesQuery } from "@/store/api/productsApi";
 import { useProductFilters } from "@/features/products/hooks/useProductFilters";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export default function Navbar() {
   const { openCart, openSidebar } = useUI();
@@ -42,22 +43,29 @@ export default function Navbar() {
       <Toolbar
         sx={{ gap: 2, display: "flex", justifyContent: "space-between" }}
       >
-        {/* Logo */}
-
-        <Typography
-          variant="h6"
-          component={Link}
-          href="/"
-          sx={{
-            textDecoration: "none",
-            color: "inherit",
-            fontWeight: 600,
-            whiteSpace: "nowrap",
-          }}
-        >
-          Damatag Dashboard
-        </Typography>
-
+        <div className="flex gap-0">
+          <Typography
+            variant="h6"
+            component={Link}
+            href="/"
+            sx={{
+              textDecoration: "none",
+              color: "inherit",
+              fontWeight: 600,
+              whiteSpace: "nowrap",
+              display: "flex",
+            }}
+          >
+            <Image
+              src="/logo.svg"
+              alt="Damatag"
+              width={120}
+              height={32}
+              priority
+            />
+            ✨
+          </Typography>
+        </div>
         {/* Categories */}
         {isHome && !isMobile && (
           <Select

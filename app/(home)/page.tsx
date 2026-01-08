@@ -7,29 +7,29 @@ import { useGetProductsQuery } from "@/store/api/productsApi";
 import { useProductFilters } from "@/features/products/hooks/useProductFilters";
 import { applyProductFilters } from "@/features/products/utils/applyProductFilters";
 
-const PAGE_SIZE = 8;
+
 
 export default function HomePage() {
-  const { data = [], isLoading, isError } = useGetProductsQuery();
+  const [pageSize, setPageSize] = useState(8);
+  const { data = [], isLoading, isError } = useGetProductsQuery(pageSize);
   const { filters } = useProductFilters();
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const filteredProducts = applyProductFilters(data, filters);
-  const visibleProducts = filteredProducts.slice(0, visibleCount);
+ 
 
   return (
     <>
       <ProductGrid
-        products={visibleProducts}
+        products={filteredProducts}
         isLoading={isLoading}
         isError={isError}
       />
 
-      {visibleCount < filteredProducts.length && (
+      {filteredProducts.length && (
         <Box display="flex" justifyContent="center" mt={4}>
           <Button
             variant="outlined"
-            onClick={() => setVisibleCount((v) => v + PAGE_SIZE)}
+            onClick={() => setPageSize((v) => v + 8)}
           >
             Load More
           </Button>
