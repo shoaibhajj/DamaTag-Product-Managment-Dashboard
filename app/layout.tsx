@@ -4,6 +4,7 @@ import Providers from "./providers";
 import Navbar from "@/features/layout/components/Navbar";
 import CartDrawer from "@/features/cart/components/CartDrawer";
 import { Suspense } from "react";
+import Footer from "@/features/layout/components/Footer";
 export const metadata: Metadata = {
   title: {
     default: "DamaTag Product Management Dashboard",
@@ -30,6 +31,7 @@ export default function RootLayout({
             <Navbar />
             <CartDrawer />
             {children}
+            <Footer />
           </Providers>
         </Suspense>
       </body>
