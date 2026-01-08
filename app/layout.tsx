@@ -3,7 +3,7 @@ import "./globals.css";
 import Providers from "./providers";
 import Navbar from "@/features/layout/components/Navbar";
 import CartDrawer from "@/features/cart/components/CartDrawer";
-
+import { Suspense } from "react";
 export const metadata: Metadata = {
   title: {
     default: "DamaTag Product Management Dashboard",
@@ -25,11 +25,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Providers>
-          <Navbar />
-          <CartDrawer />
-          {children}
-        </Providers>
+        <Suspense fallback={null}>
+          <Providers>
+            <Navbar />
+            <CartDrawer />
+            {children}
+          </Providers>
+        </Suspense>
       </body>
     </html>
   );
